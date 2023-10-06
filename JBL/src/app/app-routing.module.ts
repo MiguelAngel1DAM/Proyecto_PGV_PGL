@@ -28,7 +28,7 @@ const routes: Routes = [
     loadChildren: () => import('./headsets-form/headsets-form.module').then(m => m.HeadsetsFormPageModule)
   },
   {
-    path: 'update-form/:id', // Ruta corregida con ':id'
+    path: 'update-form/:id',
     loadChildren: () => import('./update-form/update-form.module').then(m => m.UpdateFormPageModule)
   },
   {

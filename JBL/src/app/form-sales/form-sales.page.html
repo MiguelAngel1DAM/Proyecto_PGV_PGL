@@ -32,18 +32,18 @@
         <ion-item>
           <ion-label>Cliente</ion-label>
           <ion-select [(ngModel)]="clienteId">
-            <ion-select-option *ngFor="let cliente of clientes" [value]="cliente.id">{{ cliente.name }}</ion-select-option>
+            <ion-select-option *ngFor="let user of Users" [value]="user.id">{{ user.name }}</ion-select-option>
           </ion-select>
         </ion-item>
         <ion-item>
           <ion-label>Producto</ion-label>
           <ion-select [(ngModel)]="productoId">
-            <ion-select-option *ngFor="let producto of productos" [value]="producto.id">{{ producto.name }}</ion-select-option>
+            <ion-select-option *ngFor="let headset of Headsets" [value]="headset.id">{{ headset.name }}</ion-select-option>
           </ion-select>
         </ion-item>          
         <ion-button (click)="crearVenta()" color="success">Crear Venta</ion-button>
       </ion-card-content>
-    </ion-card>   
+    </ion-card> 
 
     <ion-list *ngIf="ventas.length > 0">
       <ion-list-header>Ventas Existentes</ion-list-header>

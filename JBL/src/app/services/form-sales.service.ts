@@ -15,15 +15,13 @@ export class FormSalesService {
     return this.httpClient.post<any>(this.endpoint, venta);
   }
   
-  getClientes(): Observable<any[]> {
-    const url = `${this.endpoint}/users`;
-    return this.httpClient.get<any[]>(url);
+  getUser(): Observable<any[]> {
+    return this.httpClient.get<any[]>(this.endpoint);
   }
 
-  getProductos(): Observable<any[]> {
-    const url = `${this.endpoint}/headsets`;
-    return this.httpClient.get<any[]>(url);
-  }  
+  getHeadset(): Observable<any[]> {
+    return this.httpClient.get<any[]>(this.endpoint);
+  }
   
   borrarVenta(id: number): Observable<void> {
     const url = `${this.endpoint}/${id}`;

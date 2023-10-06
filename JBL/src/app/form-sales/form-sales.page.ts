@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormSalesService } from '../services/form-sales.service';
 import { Router } from '@angular/router';
+import { UsersService } from '../services/users.service';
+import { HeadsetsService } from '../services/headsets.service';
 
 @Component({
   selector: 'app-form-sales',
@@ -11,16 +13,19 @@ export class FormSalesPage implements OnInit {
   clienteId: number | null = null;
   productoId: number | null = null;
   ventas: any[] = [];
-  clientes: any[] = [];
-  productos: any[] = [];
+  Users: any = [];
+  Headsets: any = [];
   clienteName: string = '';
   productoName: string = '';
 
-  constructor(private formSalesService: FormSalesService, private router: Router) {}
+  constructor(private formSalesService: FormSalesService,
+     private router: Router
+    ,  private userService: UsersService,
+    private headsetService: HeadsetsService) {}
 
   ngOnInit() {
-    this.obtenerClientes();
-    this.obtenerProductos();
+    this.getAllUsers();
+    this.getAllHeadsets();
     this.obtenerVentas();
   }
 
@@ -46,17 +51,19 @@ export class FormSalesPage implements OnInit {
       this.ventas = ventas;
     });
   }
-  obtenerClientes() {
-    this.formSalesService.getClientes().subscribe((clientes) => {
-      this.clientes = clientes;
-    });
+
+  getAllUsers(){
+    this.userService.getUser().subscribe(response=>{
+      this.Users = response;
+    })
   }
 
-  obtenerProductos() {
-    this.formSalesService.getProductos().subscribe((productos) => {
-      this.productos = productos;
+  getAllHeadsets() {
+    this.headsetService.getHeadset().subscribe(response => {
+      this.Headsets = response;
     });
   }
+  
   gotoHeadsets() {
     this.router.navigateByUrl("/headsets");
   }
