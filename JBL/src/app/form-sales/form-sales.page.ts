@@ -32,7 +32,7 @@ export class FormSalesPage implements OnInit {
         this.productoId = null;
       });
     }
-  }
+  }  
   
 
   borrarVenta(idVenta: number) {
