@@ -1,0 +1,56 @@
+<!-- form-sales.page.html -->
+
+<ion-menu contentId="main-content">  
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Menu</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content class="ion-padding">
+    <ion-button expand="block" (click)="gotoUsers()">Usuarios</ion-button>
+    <ion-button expand="block" (click)="gotoHeadsets()">Auriculares</ion-button>
+    <ion-button expand="block" (click)="gotoHome()">Inicio</ion-button>
+  </ion-content>
+</ion-menu>
+
+<div class="ion-page" id="main-content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title>FormSales</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content [fullscreen]="true">
+    <ion-card>
+      <ion-card-header>
+        Crear Venta
+      </ion-card-header>
+      <ion-card-content>
+        <ion-item>
+          <ion-label>Cliente</ion-label>
+          <ion-select [(ngModel)]="clienteId">
+            <ion-select-option *ngFor="let cliente of clientes" [value]="cliente.id">{{ cliente.name }}</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-label>Producto</ion-label>
+          <ion-select [(ngModel)]="productoId">
+            <ion-select-option *ngFor="let producto of productos" [value]="producto.id">{{ producto.name }}</ion-select-option>
+          </ion-select>
+        </ion-item>        
+        <ion-button (click)="crearVenta()" color="success">Crear Venta</ion-button>
+      </ion-card-content>
+    </ion-card>   
+
+    <ion-list *ngIf="ventas.length > 0">
+      <ion-list-header>Ventas Existentes</ion-list-header>
+      <ion-item *ngFor="let venta of ventas">
+        <ion-label>{{ venta.user.name }} - {{ venta.headset.name }}</ion-label>
+        <ion-button (click)="borrarVenta(venta.idSale)" color="danger" slot="end">Borrar</ion-button>
+      </ion-item>
+    </ion-list>    
+  </ion-content>
+</div>
